@@ -1,0 +1,95 @@
+/* 重置元素特性 */
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-size: 14px;
+    font-family: Arial;
+}
+
+blockquote,
+body,
+dd,
+div,
+dl,
+dt,
+em,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+img,
+input,
+label,
+li,
+ol,
+p,
+select,
+strong,
+table,
+td,
+textarea,
+th,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+dd,
+dl,
+dt,
+li,
+ul {
+    list-style: none;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    font-family: Microsoft Yahei, w3;
+    color: #303030;
+}
+
+img,
+table,
+td {
+    border: 0;
+}
+
+table,
+td,
+tr {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+button:focus {
+    outline: 0 !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:focus,
+a:hover {
+    text-decoration: blue;
+    color: cadetblue;
+}
+
+a:focus {
+    outline: 0;
+}
+
+label {
+    font-weight: normal;
+    transform: rotate(300deg);
+}
