@@ -128,6 +128,16 @@ module.exports = {
     ]
   },
 
+  // 路径解析
+  resolve: {
+    modules: [path.resolve('node_modules')],
+    // mainFields: ['main', 'style'], // 文件解析的顺序【package.json】
+    // mainFiles: ['index.js'], // 入口文件
+    extensions: ['js', 'json', 'less', 'css'], // 导入文件的扩展名称顺序
+    alias: {
+      '@': './src/view'
+    }
+  },
   // 插件
   plugins: [
     new HtmlWebpackPlaugin({
