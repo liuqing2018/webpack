@@ -20,8 +20,10 @@ require('./style/style.less');
 // // let tesss = 10;
 // // const bools = 'test'.includes('t');
 // // console.log(bools);
-class A {
-  constructor() {
-    console.log(100000000);
-  }
+
+const xhr = new XMLHttpRequest();
+xhr.open('GET', '/some', true);
+xhr.onload = function() {
+  console.log(xhr.response);
 }
+xhr.send();
