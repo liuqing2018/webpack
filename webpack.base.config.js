@@ -1,14 +1,14 @@
 const path = require('path');
 const Webpack = require('webpack');
-const HtmlWebpackPlaugin = require('html-webpack-plugin');  // 处理html
-const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 提取css文件
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // 压缩css
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩js
-const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // 清理文件
+const HtmlWebpackPlaugin = require('html-webpack-plugin');  // 把打包后的文件直接注入到html模板中
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 提取css到单独文件
+// const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // 压缩css
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩js
+const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // 每次运行前清理目录
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // 拷贝文件
 
 module.exports = {
-  mode: 'development', // 默认production 生产模式  development 开发模式
+  mode: 'development', // 默认production生产模式  development开发模式
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
@@ -22,38 +22,7 @@ module.exports = {
     aggregateTimeout: 500, // 间隔毫秒 （防抖）
     ignored: /node_modules/, // 不要监控的文件
   },
-  // 开发服务器的配置
-  devServer: {
-    // port: 8090,
-    progress: true, // 打包进度条
-    // open: true, // 自动打开浏览器
-    contentBase: './dist', // 指定静态目录文件夹
-    compress: true, // gzip压缩,
-    proxy: {
-      // 配置代理，并重新路径
-      // 'api': {
-      //   target: 'http://www.hyfm.com/v1/api',
-      //   pathRewirte:{
-      //     '/api': '',
-      //   }
-      // },
 
-      // // 模拟交互
-      // before(app) {
-      //   app.get('/data', (req, res) => {
-      //     res.json({
-      //       status: 200,
-      //       data: [1, 2, 3, 4, 5],
-      //     })
-      //   })
-      // }
-      before: function(app, server, compiler) {
-        app.get('/some', function(req, res) {
-          res.json({ custom: 'response' });
-        });
-      }
-    }
-  },
   module: {
     rules: [
       {
@@ -133,9 +102,9 @@ module.exports = {
     modules: [path.resolve('node_modules')],
     // mainFields: ['main', 'style'], // 文件解析的顺序【package.json】
     // mainFiles: ['index.js'], // 入口文件
-    extensions: ['js', 'json', 'less', 'css'], // 导入文件的扩展名称顺序
+    extensions: ['.js', '.json', '.less', '.css'], // 导入文件的扩展名称顺序
     alias: {
-      '@': 'src/view'
+      components: './src/components'
     }
   },
   // 插件
@@ -195,21 +164,8 @@ module.exports = {
     // 清空文件
     new CleanWebpackPlugin(),
 
-    // new Webpack.BannerPlugin({
-    //   banner: "hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]",
-    // })
     new Webpack.BannerPlugin('link1024'),
   ],
 
-  // 优化项
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        sourceMap: false, // 源码映射
-        parallel: true, // 使用多进程并行运行来提高构建速度
-        cache: true, // 是否启用文件缓存，默认缓存在node_modules/.cache/uglifyjs-webpack-plugin.目录
-      }),
-      new OptimizeCssAssetsPlugin(), // 压缩css文件后，js文件又不压缩了
-    ]
-  }
+
 };
