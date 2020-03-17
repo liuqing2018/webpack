@@ -135,11 +135,16 @@ module.exports = {
     // mainFiles: ['index.js'], // 入口文件
     extensions: ['js', 'json', 'less', 'css'], // 导入文件的扩展名称顺序
     alias: {
-      '@': './src/view'
+      '@': 'src/view'
     }
   },
   // 插件
   plugins: [
+    new Webpack.DefinePlugin({
+      DEV: JSON.stringify('this is dev'),
+    }),
+
+    // 处理Html
     new HtmlWebpackPlaugin({
       template: "./index.html", // 模板文件路径
       filename: 'index.html', // 打包后的文件名称

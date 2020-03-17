@@ -1,10 +1,10 @@
-import logo from './assets/bg.jpg';
-let img = new Image();
-// img.src = './assets/bg.jpg';
-img.src = logo;
-img.width = 400;
-img.height = 300;
-document.body.appendChild(img);
+// import logo from './assets/bg.jpg';
+// let img = new Image();
+// // img.src = './assets/bg.jpg';
+// img.src = logo;
+// img.width = 400;
+// img.height = 300;
+// document.body.appendChild(img);
 
 // require('@babel/polyfill');
 
@@ -21,9 +21,12 @@ require('./style/style.less');
 // // const bools = 'test'.includes('t');
 // // console.log(bools);
 
-const xhr = new XMLHttpRequest();
-xhr.open('GET', '/some', true);
-xhr.onload = function() {
-  console.log(xhr.response);
-}
-xhr.send();
+// const xhr = new XMLHttpRequest();
+// xhr.open('GET', '/some', true);
+// xhr.onload = function() {
+//   console.log(xhr.response);
+// }
+// xhr.send();
+
+console.log(DEV);
+
